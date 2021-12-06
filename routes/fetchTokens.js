@@ -1,13 +1,12 @@
 const router = require("express").Router();
-const spotifyApiConfig = require('../spotifyApi/fetchTokensConfig')
+const spotifyFetchTokens = require('../spotifyApi/fetchTokensConfig')
+
 
 router.get("/publicToken", (req, res, next) => {
-  console.log("test home")
-  res.cookie("myCookie", "test", {httpOnly : false})
-
-  spotifyApiConfig.fetchPublicToken()
+  spotifyFetchTokens.fetchPublicToken()
     .then(res => {
       console.log("public_token", res)
+
       var public_token = res
       //res.cookie("public_token", public_token)
     })
