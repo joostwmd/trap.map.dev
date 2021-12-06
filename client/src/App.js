@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import Test from './pages/Test';
 import Map from './pages/Map';
 import ArtistProfile from './pages/ArtistProfile';
+import Playlists from './pages/Playlists';
 
 function App() {
   return (
@@ -30,6 +31,11 @@ function App() {
           <Route 
             exact path="/map/:artistDB"
             element={<ArtistProfile />}
+          />
+
+          <Route 
+            exact path="/:spotifyUsername/playlists/:trackID"
+            element={<Playlists />}
           />
 
         </Routes>

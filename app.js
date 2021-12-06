@@ -28,6 +28,8 @@ app.use("/token", fetchTokens);
 const spotifyArtistCalls = require("./routes/spotifyArtistCalls")
 app.use("/spotifyArtistCalls", spotifyArtistCalls)
 
+const spotifyUserCalls = require("./routes/spotifyUserCalls")
+app.use("/spotifyUserCalls", spotifyUserCalls)
 
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes

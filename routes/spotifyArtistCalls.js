@@ -4,7 +4,7 @@ const spotifyFetchTokens = require('../spotifyApi/fetchTokensConfig')
 const spotifyApiArtistCalls = require('../spotifyApi/artistCallsConfig')
 
 
-router.post("/map/:artistDB/getInfo", (req, res, next) => {
+router.post("/getInfo", (req, res, next) => {
 
     spotifyFetchTokens.fetchPublicToken()
         .then(token => {
@@ -21,7 +21,7 @@ router.post("/map/:artistDB/getInfo", (req, res, next) => {
 })
 
 
-router.post("/map/:artistDB/getTopTracks", (req, res, next) => {
+router.post("/getTopTracks", (req, res, next) => {
 
     spotifyFetchTokens.fetchPublicToken()
         .then(token => {
@@ -37,7 +37,7 @@ router.post("/map/:artistDB/getTopTracks", (req, res, next) => {
                 })
 })
 
-router.post("/map/:artistDB/getAlbums", (req, res, next) => {
+router.post("/getAlbums", (req, res, next) => {
 
     spotifyFetchTokens.fetchPublicToken()
         .then(token => {

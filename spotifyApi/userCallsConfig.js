@@ -5,9 +5,6 @@ const privateSpotifyApi = new SpotifyWebApi({
   ClientId: "25ecacddc59e4a3aadede77c0f93cf43", 
 })
 
-const setPrivateSpotifyApiToken = (token) => {
-    privateSpotifyApi.setAccessToken(token)
-}
 
 const getSpotifyUserInfo = () => {
     const res = privateSpotifyApi.getMe()
@@ -73,4 +70,4 @@ const addToSpotifyPlaylist = (playlistId, trackId) => {
 }
 
 
-module.exports = {setPrivateSpotifyApiToken, getSpotifyUserInfo, checkIfFollowingArtist, followArtistsOnSpotify, createSpotifyPlaylist, getUserPlaylists, addToSpotifyPlaylist};
+module.exports = {getSpotifyUserInfo, checkIfFollowingArtist, followArtistsOnSpotify, createSpotifyPlaylist, getUserPlaylists, addToSpotifyPlaylist};

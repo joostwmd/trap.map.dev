@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 function ArtistProfile() {
 
     const API_URL = 'http://localhost:5005';
+    const CLIENT_URL = 'http://localhost:3000'
+
     const artistDB = window.location.pathname.split("/")[2]
     const requestBody = {artistDB}
 
@@ -32,22 +35,36 @@ function ArtistProfile() {
     }
 
     useEffect(() => {
-        axios.post(`${API_URL}/spotifyArtistCalls/map/${artistDB}/getInfo`, requestBody)
+        axios.post(`${API_URL}/spotifyArtistCalls/getInfo`, requestBody)
             .then(res => {
                 console.log("info", res)
                 setInfo(res.data)
             })
 
-        axios.post(`${API_URL}/spotifyArtistCalls/map/${artistDB}/getTopTracks`, requestBody)
+        axios.post(`${API_URL}/spotifyArtistCalls/getTopTracks`, requestBody)
             .then(res => {
                 console.log("topTracks", res)
                 setTopTracks(res.data)
             })
         
-        axios.post(`${API_URL}/spotifyArtistCalls/map/${artistDB}/getAlbums`, requestBody)
+        axios.post(`${API_URL}/spotifyArtistCalls/getAlbums`, requestBody)
             .then(res => {
                 console.log("albums", res)
                 setReleasedMusic(countTracks(res.data))
+                
+            })
+
+
+        //user related
+
+        axios.post(`${API_URL}/spotifyUserCalls/getMe`, requestBody)
+            .then(res => {
+              
+                
+        })
+
+        axios.post(`${API_URL}/spotifyUserCalls/checkIfFollowingArtist`, requestBody)
+            .then(res => {
                 
             })
 
@@ -68,6 +85,14 @@ function ArtistProfile() {
                             <audio controls>
                                 <source src={track.preview_url} />
                             </audio>
+                            {/* <a href={`${CLIENT_URL}/${spotifyUsername}/playlists/${track.id}`}>
+                                <button>add to playlist</button>
+                            </a> */}
+
+                            <a href={`${CLIENT_URL}/joostwmd/playlists/${track.id}`}>
+                                <button>add to playlist</button>
+                            </a>
+
                         </div>
                 )
                 }

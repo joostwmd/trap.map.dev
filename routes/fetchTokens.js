@@ -16,9 +16,9 @@ router.post("/callback", (req, res, next) => {
   console.log("test callback")
   const queryString = req.body.queryString
   
-  const code = spotifyApiConfig.getCodeFromRedirect(queryString)
+  const code = spotifyFetchTokens.getCodeFromRedirect(queryString)
   
-  const tokens = spotifyApiConfig.fetchPrivateToken(code)
+  spotifyFetchTokens.fetchPrivateToken(code)
     .then(res => {
       console.log("private_tokens", res)
     
@@ -31,5 +31,15 @@ router.post("/callback", (req, res, next) => {
       
     })
 })
+
+// router.post("/refresh", (req, res, next) => {
+//   console.log("test refresh")
+//   spotifyFetchTokens.getRefreshToken(REFRESHTOKEN HERE)
+//     .then(res => {
+//       console.log("refreshed_private_token", res)
+//     })
+// })
+
+
 
 module.exports = router;

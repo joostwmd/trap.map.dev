@@ -60,4 +60,24 @@ const getCodeFromRedirect = (queryString) => {
   return code
 }
 
-module.exports = {fetchPublicToken, getCodeFromRedirect, fetchPrivateToken};
+
+const getRefreshToken = async (refreshToken) => {
+    const data = new URLSearchParams()
+    data.append("grant_type", "refresh_token");
+    data.append("refresh_token", refreshToken);
+
+    const result = await fetch (`${tokenEndpoint}`, {
+      method : 'POST',
+      body : data,
+      headers: {
+        'Authorization' : 'Basic ' + btoa(`${client_id}:${client_secret}`),
+        'Content-Type':'application/x-www-form-urlencoded'
+      }
+    })
+
+    const res = await result.json()
+    return res
+    
+}
+
+module.exports = {fetchPublicToken, getCodeFromRedirect, fetchPrivateToken, getRefreshToken};
