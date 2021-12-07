@@ -11,10 +11,30 @@ const express = require("express");
 const cookieParser = require('cookie-parser')
 
 
+
 const app = express();
 
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app);
+
+// session configuration
+
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
+const DB_URL = "mongodb+srv://admin:kxH3kK0yBHQez3nQ@cluster0.pppja.mongodb.net/MapMusicAdmin" || "mongodb://localhost/MapMusicAdmin";
+
+app.use(
+	session({
+		secret: 'somesecret',
+		// for how long is the user logged in -> this would be one day 	
+		cookie: { maxAge: 1000 * 60 * 60 * 24 },
+		resave: true,
+		saveUninitialized: false,
+		store: MongoStore.create({
+			mongoUrl: DB_URL
+		})
+	})
+)
 
 
 // 👇 Start handling routes here

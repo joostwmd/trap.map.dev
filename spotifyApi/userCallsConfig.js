@@ -6,7 +6,8 @@ const privateSpotifyApi = new SpotifyWebApi({
 })
 
 
-const getSpotifyUserInfo = () => {
+const getSpotifyUserInfo = (token) => {
+    privateSpotifyApi.setAccessToken(token)
     const res = privateSpotifyApi.getMe()
         .then(function(data){
             return data.body

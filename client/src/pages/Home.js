@@ -4,6 +4,13 @@ import axios from 'axios'
 import { spotifyAuthUrl } from '../services/spotifyAuth'
 
 function Home() {
+
+    const API_URL = 'http://localhost:5005';
+
+    useEffect(() => {
+        axios.get(`${API_URL}/token/publicToken`)
+
+    })
     
     return (
         <div>

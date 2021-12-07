@@ -5,7 +5,6 @@ const Artist = require('../models/Artist')
 const spotifyFetchTokens = require('../spotifyApi/fetchTokensConfig')
 const spotifyApiArtistCalls = require('../spotifyApi/artistCallsConfig')
 
-
 //getSpotifyUserInfo, checkIfFollowingArtist, followArtistsOnSpotify, createSpotifyPlaylist, getUserPlaylists, addToSpotifyPlaylist
 
 router.post("/getMe", (req, res, next) => {
